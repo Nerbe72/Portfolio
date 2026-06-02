@@ -55,6 +55,13 @@ export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
               {project.tags.map(t => <span key={t} className="tag">{t}</span>)}
             </div>
             <h2 className="modal-title">{project.title}</h2>
+            
+            {/* 메타데이터 */}
+            <ul className="pm-meta">
+              <li><strong>개발 기간:</strong> {project.period}</li>
+              <li><strong>개발 인원:</strong> {project.team}</li>
+              <li><strong>사용 엔진:</strong> {project.engine}</li>
+            </ul>
           </div>
           <button className="modal-close" onClick={onClose} aria-label="닫기">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -97,13 +104,6 @@ export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
 
           {/* 설명 */}
           <p className="pm-desc">{project.desc}</p>
-
-          {/* 메타데이터 */}
-          <ul className="pm-meta">
-            <li><strong>개발 기간:</strong> {project.period}</li>
-            <li><strong>개발 인원:</strong> {project.team}</li>
-            <li><strong>사용 엔진:</strong> {project.engine}</li>
-          </ul>
 
           {/* 액션 버튼 */}
           <div className="pm-actions">

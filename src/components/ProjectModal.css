@@ -81,23 +81,20 @@
 .pm-meta {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.85rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  background: var(--bg-primary);
-  padding: 1rem 1.2rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-strong);
+  margin-top: 0.2rem;
 }
 .pm-meta li {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 .pm-meta strong {
   color: var(--text-secondary);
   font-weight: 500;
-  min-width: 70px;
 }
 
 /* 액션 버튼 */
