@@ -77,6 +77,29 @@
   line-height: 1.85;
 }
 
+/* 메타데이터 */
+.pm-meta {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+}
+.pm-meta li {
+  display: flex;
+  gap: 0.5rem;
+}
+.pm-meta strong {
+  color: var(--text-secondary);
+  font-weight: 500;
+  min-width: 70px;
+}
+
 /* 액션 버튼 */
 .pm-actions {
   display: flex;

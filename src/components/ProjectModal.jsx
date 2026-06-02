@@ -98,6 +98,13 @@ export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
           {/* 설명 */}
           <p className="pm-desc">{project.desc}</p>
 
+          {/* 메타데이터 */}
+          <ul className="pm-meta">
+            <li><strong>개발 기간:</strong> {project.period}</li>
+            <li><strong>개발 인원:</strong> {project.team}</li>
+            <li><strong>사용 엔진:</strong> {project.engine}</li>
+          </ul>
+
           {/* 액션 버튼 */}
           <div className="pm-actions">
             {project.youtube && (
