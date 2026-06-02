@@ -54,6 +54,7 @@ export default function About() {
               { value: '6+', label: '완성 프로젝트' },
               { value: 'Unity', label: '주 엔진' },
               { value: 'C#', label: '주 언어' },
+              { value: 'PC / Console / Mobile', label: '주 플랫폼' },
             ].map(stat => (
               <div key={stat.label} className="stat-card">
                 <span className="stat-value">{stat.value}</span>
