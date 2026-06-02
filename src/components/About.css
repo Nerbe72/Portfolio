@@ -40,6 +40,10 @@
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }
+.stat-value.long {
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
 .stat-label {
   font-size: 0.78rem;
   color: var(--text-secondary);
