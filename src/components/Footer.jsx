@@ -1,12 +1,83 @@
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
+import AlanWakeMinigame from './AlanWakeMinigame'
 import './Footer.css'
 
 export default function Footer() {
   const [ref, inView] = useInView(0.3)
+  const [isEmberRestored, setIsEmberRestored] = useState(false)
+  const [isAlanWakeActive, setIsAlanWakeActive] = useState(false)
+  const [isTimeTraveling, setIsTimeTraveling] = useState(false)
+
+  useEffect(() => {
+    if (isEmberRestored) {
+      const timer = setTimeout(() => {
+        setIsEmberRestored(false)
+      }, 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [isEmberRestored])
+
+  const handleBonfireClick = () => {
+    if (!isEmberRestored) setIsEmberRestored(true)
+  }
+
+  const handleAmeClick = () => {
+    if (isTimeTraveling) return
+    setIsTimeTraveling(true)
+    
+    document.body.classList.add('time-travel-glitch')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    setTimeout(() => {
+      setIsTimeTraveling(false)
+      document.body.classList.remove('time-travel-glitch')
+    }, 2500)
+  }
 
   return (
     <footer id="contact" className="footer">
+      <AnimatePresence>
+        {isEmberRestored && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              position: 'fixed',
+              top: 0, left: 0, right: 0, bottom: 0,
+              pointerEvents: 'none',
+              zIndex: 9999,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              animation: 'ember-burn 4s ease-in-out forwards'
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, filter: 'blur(10px)' }}
+              animate={{ scale: 1.05, opacity: 1, filter: 'blur(0px)' }}
+              exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
+              transition={{ duration: 3, ease: 'easeOut' }}
+              style={{
+                fontFamily: '"Times New Roman", serif',
+                fontSize: 'clamp(2rem, 8vw, 5rem)',
+                fontWeight: 'bold',
+                color: '#ffb347',
+                textShadow: '0 0 20px #ff4500, 0 0 40px #ff0000, 2px 2px 4px rgba(0,0,0,0.8)',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                textAlign: 'center'
+              }}
+            >
+              Ember Restored
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="container footer-inner" ref={ref}>
         <motion.div
           className="footer-top"
@@ -75,7 +146,7 @@ export default function Footer() {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2.5rem', marginTop: '1.8rem', paddingBottom: '1.5rem' }}>
           
           {/* 아멜리아 왓슨 모자 */}
-          <div className="ame-easter-egg" title="Hic!" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <div className="ame-easter-egg" title="REEEEEE!" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={handleAmeClick}>
             <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <g transform="rotate(45, 50, 50)">
                 {/* Handle (Dark Brown / Black) */}
@@ -107,7 +178,7 @@ export default function Footer() {
           </div>
 
           {/* 다크소울 화톳불 */}
-          <div className="bonfire-easter-egg" title="Farewell, Ashen One." style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <div className="bonfire-easter-egg" title="Farewell, Ashen One." style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={handleBonfireClick}>
             <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               {/* Ash and Bones at base */}
               <path d="M 15 80 Q 50 70 85 80 Q 50 95 15 80 Z" fill="#2a2a2a" />
@@ -145,9 +216,56 @@ export default function Footer() {
               <path d="M 45 82 C 45 75 48 65 50 55 C 52 65 55 75 55 82 Z" fill="#ffffff" opacity="0.9"/>
             </svg>
           </div>
+
+          {/* 앨런 웨이크 손전등 */}
+          <div className="aw-easter-egg" title="It's not a lake, it's an ocean." style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={() => setIsAlanWakeActive(true)}>
+            <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(0, 10) rotate(-30, 50, 50)">
+                {/* Body */}
+                <rect x="40" y="40" width="20" height="40" fill="#4a4a4a" stroke="#2a2a2a" strokeWidth="2"/>
+                <rect x="42" y="45" width="16" height="30" fill="#666" />
+                
+                {/* Head */}
+                <path d="M 35 25 L 65 25 L 60 40 L 40 40 Z" fill="#3a3a3a" stroke="#1a1a1a" strokeWidth="2"/>
+                <path d="M 37 27 L 63 27 L 58 38 L 42 38 Z" fill="#555" />
+                
+                {/* Lens / Bulb */}
+                <rect x="35" y="20" width="30" height="5" rx="1" fill="#e0f7fa" stroke="#1a1a1a" strokeWidth="2"/>
+                <circle cx="50" cy="22" r="2" fill="#fff" />
+                
+                {/* Switch */}
+                <rect x="45" y="50" width="10" height="6" rx="2" fill="#ff3333" stroke="#2a2a2a" strokeWidth="1"/>
+                
+                {/* Bottom Cap */}
+                <rect x="38" y="80" width="24" height="6" rx="2" fill="#3a3a3a" stroke="#1a1a1a" strokeWidth="2"/>
+              </g>
+            </svg>
+          </div>
           
         </div>
       </div>
+      
+      {isAlanWakeActive && (
+        <AlanWakeMinigame onComplete={() => setIsAlanWakeActive(false)} />
+      )}
+
+      <AnimatePresence>
+        {isTimeTraveling && (
+          <motion.div
+            className="time-travel-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="time-travel-clock">
+              <div className="clock-hand minute-hand"></div>
+              <div className="clock-hand hour-hand"></div>
+            </div>
+            <div className="time-travel-text">REEEEEE!</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </footer>
   )
 }
