@@ -76,7 +76,7 @@ export default function Footer() {
           
           {/* 아멜리아 왓슨 모자 */}
           <div className="ame-easter-egg" title="Hic!" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-            <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <g transform="rotate(45, 50, 50)">
                 {/* Handle (Dark Brown / Black) */}
                 <rect x="44" y="52" width="12" height="35" rx="2" fill="#2d2522" stroke="#1a1513" strokeWidth="1"/>
@@ -108,7 +108,7 @@ export default function Footer() {
 
           {/* 다크소울 화톳불 */}
           <div className="bonfire-easter-egg" title="Farewell, Ashen One." style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-            <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               {/* Ash and Bones at base */}
               <path d="M 15 80 Q 50 70 85 80 Q 50 95 15 80 Z" fill="#2a2a2a" />
               <path d="M 20 78 Q 50 68 80 78 Q 50 88 20 78 Z" fill="#3a3a3a" />
