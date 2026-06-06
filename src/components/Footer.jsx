@@ -48,6 +48,7 @@ export default function Footer() {
           </div>
         </motion.div>
 
+        {/* === [원본 코드 보관 (되돌릴 땐 아래 주석 해제)] ===
         <motion.div
           className="footer-bottom"
           initial={{ opacity: 0 }}
@@ -57,6 +58,95 @@ export default function Footer() {
           <span>© 2025 이호진. All rights reserved.</span>
           <span className="footer-made">Built with Vite + React</span>
         </motion.div>
+        ==================================================== */}
+
+        {/* 아멜리아 왓슨 이스터에그 추가 버전 */}
+        <motion.div
+          className="footer-bottom"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <span>© 2025 이호진. All rights reserved.</span>
+          <span className="footer-made">Built with Vite + React</span>
+        </motion.div>
+
+        {/* 이스터에그 전용 컨테이너 (더 아래로) */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2.5rem', marginTop: '1.8rem', paddingBottom: '1.5rem' }}>
+          
+          {/* 아멜리아 왓슨 모자 */}
+          <div className="ame-easter-egg" title="Hic!" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <g transform="rotate(45, 50, 50)">
+                {/* Handle (Dark Brown / Black) */}
+                <rect x="44" y="52" width="12" height="35" rx="2" fill="#2d2522" stroke="#1a1513" strokeWidth="1"/>
+                
+                {/* Gold Pommel at bottom of handle */}
+                <rect x="43" y="85" width="14" height="6" rx="2" fill="#d4af37" stroke="#b8860b" strokeWidth="1.5"/>
+                <rect x="44" y="86" width="12" height="2" fill="#ffe066" opacity="0.6"/>
+                
+                {/* Outer Rim (Gold) */}
+                <circle cx="50" cy="25" r="26" fill="#d4af37" stroke="#b8860b" strokeWidth="2"/>
+                <circle cx="50" cy="25" r="23" fill="#ffd700"/>
+                
+                {/* Lens (White with blue tint) */}
+                <circle cx="50" cy="25" r="21" fill="#f4fbfd" stroke="#b8860b" strokeWidth="1"/>
+                
+                {/* Lens Reflection (Diagonal cut across lens) */}
+                <path d="M 33 13 Q 50 30 50 46 A 21 21 0 0 0 70 18 Q 50 5 33 13 Z" fill="#e0f4f8" opacity="0.6"/>
+                <path d="M 35 15 A 17 17 0 0 1 65 15" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" opacity="0.9"/>
+                
+                {/* Mustache (Gold Collar directly connecting rim and handle) */}
+                <path d="M 32 47 C 36 44, 45 44, 50 49 C 55 44, 64 44, 68 47 C 64 54, 55 54, 50 51 C 45 54, 36 54, 32 47 Z" fill="#ffd700" stroke="#b8860b" strokeWidth="1.5" strokeLinejoin="round"/>
+                
+                {/* Highlight on Mustache */}
+                <path d="M 36 48 Q 45 46 48 50" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+                <path d="M 64 48 Q 55 46 52 50" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+              </g>
+            </svg>
+          </div>
+
+          {/* 다크소울 화톳불 */}
+          <div className="bonfire-easter-egg" title="Farewell, Ashen One." style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              {/* Ash and Bones at base */}
+              <path d="M 15 80 Q 50 70 85 80 Q 50 95 15 80 Z" fill="#2a2a2a" />
+              <path d="M 20 78 Q 50 68 80 78 Q 50 88 20 78 Z" fill="#3a3a3a" />
+              {/* Skulls and bones embedded in ash */}
+              <circle cx="35" cy="75" r="4" fill="#888"/>
+              <circle cx="42" cy="78" r="3" fill="#777"/>
+              <circle cx="65" cy="74" r="5" fill="#888"/>
+              <circle cx="58" cy="79" r="4" fill="#666"/>
+              <path d="M 63 72 Q 65 69 67 72" stroke="#ccc" strokeWidth="1.5" fill="none"/>
+              <path d="M 33 73 Q 35 71 37 73" stroke="#ccc" strokeWidth="1.5" fill="none"/>
+              
+              {/* Back Flames */}
+              <path d="M 30 80 C 20 55 40 35 50 15 C 60 35 80 55 70 80 Z" fill="#e65100" opacity="0.8"/>
+              <path d="M 35 82 C 30 65 45 45 50 30 C 55 45 70 65 65 82 Z" fill="#ff9800" opacity="0.9"/>
+              
+              {/* Coiled Sword */}
+              <path d="M 35 30 L 65 30 L 63 34 L 37 34 Z" fill="#2a2a2a"/> {/* Guard */}
+              <path d="M 46 10 L 54 10 L 52 30 L 48 30 Z" fill="#1a1a1a"/> {/* Handle */}
+              <circle cx="50" cy="8" r="4" fill="#2a2a2a"/> {/* Pommel */}
+              
+              {/* Sword Blade (Coiled Base) */}
+              <path d="M 46 34 L 54 34 L 52 50 L 48 50 Z" fill="#222"/>
+              <path d="M 47 50 L 53 50 L 51 65 L 49 65 Z" fill="#1a1a1a"/>
+              <path d="M 48 65 L 52 65 L 50 80 Z" fill="#111"/>
+              
+              {/* Coils overlapping */}
+              <path d="M 44 38 Q 50 43 56 36" fill="none" stroke="#4a4a4a" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M 45 48 Q 50 53 55 46" fill="none" stroke="#4a4a4a" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M 46 58 Q 50 63 54 56" fill="none" stroke="#4a4a4a" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M 47 68 Q 50 72 53 67" fill="none" stroke="#4a4a4a" strokeWidth="2" strokeLinecap="round"/>
+
+              {/* Front Flames (Inner bright core) */}
+              <path d="M 40 82 C 40 65 45 55 50 40 C 55 55 60 65 60 82 Z" fill="#ffeb3b" opacity="0.95"/>
+              <path d="M 45 82 C 45 75 48 65 50 55 C 52 65 55 75 55 82 Z" fill="#ffffff" opacity="0.9"/>
+            </svg>
+          </div>
+          
+        </div>
       </div>
     </footer>
   )
