@@ -14,7 +14,7 @@ export default function AlanWakeMinigame({ onComplete }) {
     // Spawn 4 shadows at random positions, avoiding the edges
     const newShadows = Array.from({ length: 4 }).map((_, i) => {
       const id = i;
-      hpRef.current[id] = 100; // Drains at 50/sec -> 2 seconds to destroy
+      hpRef.current[id] = 75; // Drains at 50/sec -> 1.5 seconds to destroy
       return {
         id,
         x: Math.random() * (window.innerWidth - 300) + 150,
