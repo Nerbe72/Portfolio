@@ -125,6 +125,27 @@ const projects = [
       `${BASE}images/toritos_placeholder.png`,
     ],
   },
+  {
+    id: 8,
+    title: '리듬괴도 R : 황제 나폴레옹의 유산 (한글 패치)',
+    desc: '닌텐도 3DS 리듬 어드벤처 게임 "리듬괴도 R : 황제 나폴레옹의 유산"의 비공식 유저 한글 패치 제작 프로젝트입니다. 1만 자 이상의 텍스트 및 UI 이미지 번역을 전담했습니다.',
+    detailedDesc: '닌텐도 3DS 리듬 어드벤처 게임 "리듬괴도 R : 황제 나폴레옹의 유산"의 비공식 유저 한글 패치 제작 프로젝트입니다. 총 1만 자 이상의 일본어 텍스트 번역과 UI 이미지 번역을 전담했습니다.\n번역기를 보조 도구로 활용하되 고유 명사나 지역명 등은 직접 자료를 검색하며 검증했고, 캐릭터별 대사 뉘앙스의 일관성을 살리기 위해 직접 게임을 플레이하며 한 문장씩 세밀하게 번역을 다듬었습니다. 또한 제작 과정에서 주변 지인들의 피드백과 조언을 적극 수용하여 번역의 자연스러움과 완성도를 높였습니다.',
+    tags: ['Translation', 'Localization', 'Fan Patch', 'Nintendo 3DS'],
+    period: '2021.01 배포',
+    team: '1인 (번역)',
+    engine: 'N/A',
+    pdf: null,
+    blog: 'https://blog.naver.com/nerb0702/222208757481', // 네이버 블로그 링크
+    youtube: null,
+    topAlignThumb: true,
+    containModalImg: true,
+    images: [
+      `${BASE}images/proj8_rhythm_thief.png`,
+      `${BASE}images/proj8_rhythm_thief_2.png`,
+      `${BASE}images/proj8_rhythm_thief_3.png`,
+      `${BASE}images/proj8_rhythm_thief_4.png`,
+    ],
+  },
 ]
 
 export default function Projects() {
@@ -162,11 +183,11 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
-          프로젝트
+          개발 프로젝트
         </motion.h2>
 
         <div className="projects-grid">
-          {projects.map((p, i) => (
+          {projects.filter(p => !p.tags.includes('Translation')).map((p, i) => (
             <motion.div
               key={p.id}
               className={`project-card${p.wip ? ' wip' : ''}`}
@@ -179,23 +200,20 @@ export default function Projects() {
               onKeyDown={e => e.key === 'Enter' && openProject(p)}
               aria-label={`${p.title} 자세히 보기`}
             >
-              {/* 썸네일 이미지 */}
               {p.images && p.images[0] && (
-                <div className="card-thumb">
+                <div className={`card-thumb${p.topAlignThumb ? ' top-align' : ''}`}>
                   <img src={p.images[0]} alt={p.title} />
                   <div className="card-thumb-overlay">
                     <span className="card-open-hint">클릭하여 자세히 보기</span>
                   </div>
                 </div>
               )}
-
               <div className="card-body">
                 <div className="project-tags">
                   {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
                 <h3 className="project-title">{p.title}</h3>
                 <p className="project-desc">{p.desc}</p>
-
                 <div className="card-links" onClick={e => e.stopPropagation()}>
                   {p.wip && <span className="wip-badge">개발 중</span>}
                   {p.youtube && (
@@ -206,6 +224,71 @@ export default function Projects() {
                   {p.github && (
                     <a href={p.github} target="_blank" rel="noopener noreferrer" className="card-link" aria-label="GitHub">
                       <GitHubIconSmall />
+                    </a>
+                  )}
+                  {p.blog && (
+                    <a href={p.blog} target="_blank" rel="noopener noreferrer" className="card-link" aria-label="Naver Blog">
+                      <BlogIconSmall />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.h2
+          className="section-title"
+          style={{ marginTop: '5rem' }}
+          initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          번역 프로젝트
+        </motion.h2>
+
+        <div className="projects-grid">
+          {projects.filter(p => p.tags.includes('Translation')).map((p, i) => (
+            <motion.div
+              key={p.id}
+              className={`project-card${p.wip ? ' wip' : ''}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.07 + 0.2, duration: 0.5 }}
+              onClick={() => openProject(p)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => e.key === 'Enter' && openProject(p)}
+              aria-label={`${p.title} 자세히 보기`}
+            >
+              {p.images && p.images[0] && (
+                <div className={`card-thumb${p.topAlignThumb ? ' top-align' : ''}`}>
+                  <img src={p.images[0]} alt={p.title} />
+                  <div className="card-thumb-overlay">
+                    <span className="card-open-hint">클릭하여 자세히 보기</span>
+                  </div>
+                </div>
+              )}
+              <div className="card-body">
+                <div className="project-tags">
+                  {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
+                </div>
+                <h3 className="project-title">{p.title}</h3>
+                <p className="project-desc">{p.desc}</p>
+                <div className="card-links" onClick={e => e.stopPropagation()}>
+                  {p.wip && <span className="wip-badge">개발 중</span>}
+                  {p.youtube && (
+                    <a href={p.youtube} target="_blank" rel="noopener noreferrer" className="card-link" aria-label="YouTube">
+                      <YoutubeIconSmall />
+                    </a>
+                  )}
+                  {p.github && (
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className="card-link" aria-label="GitHub">
+                      <GitHubIconSmall />
+                    </a>
+                  )}
+                  {p.blog && (
+                    <a href={p.blog} target="_blank" rel="noopener noreferrer" className="card-link" aria-label="Naver Blog">
+                      <BlogIconSmall />
                     </a>
                   )}
                 </div>
@@ -250,3 +333,10 @@ const YoutubeIconSmall = () => (
     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
   </svg>
 )
+
+const BlogIconSmall = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/>
+  </svg>
+)
+

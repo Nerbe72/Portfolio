@@ -49,6 +49,9 @@
   transition: transform 0.4s ease, filter 0.4s ease;
   filter: brightness(0.75);
 }
+.card-thumb.top-align img {
+  object-position: top;
+}
 .project-card:hover .card-thumb img {
   transform: scale(1.04);
   filter: brightness(0.55);
@@ -110,6 +113,7 @@
   font-size: 0.82rem;
   color: var(--text-secondary);
   line-height: 1.75;
+  white-space: pre-line;
   flex: 1;
 }
 

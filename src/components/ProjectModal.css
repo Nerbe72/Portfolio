@@ -49,6 +49,9 @@
   object-fit: cover;
   display: block;
 }
+.pm-gallery-img.contain-img {
+  object-fit: contain;
+}
 .pm-gallery-thumbs {
   display: flex;
   gap: 0.5rem;
@@ -75,6 +78,7 @@
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.85;
+  white-space: pre-line;
 }
 
 /* 메타데이터 */

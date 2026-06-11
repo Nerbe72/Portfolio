@@ -17,6 +17,11 @@ const YoutubeIcon = () => (
     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
   </svg>
 )
+const BlogIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/>
+  </svg>
+)
 
 export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
   const [imgIdx, setImgIdx] = useState(0)
@@ -80,7 +85,7 @@ export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
                   key={imgIdx}
                   src={project.images[imgIdx]}
                   alt={`${project.title} 스크린샷 ${imgIdx + 1}`}
-                  className="pm-gallery-img"
+                  className={`pm-gallery-img${project.containModalImg ? ' contain-img' : ''}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.2 }}
@@ -103,7 +108,7 @@ export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
           )}
 
           {/* 설명 */}
-          <p className="pm-desc">{project.desc}</p>
+          <p className="pm-desc">{project.detailedDesc || project.desc}</p>
 
           {/* 액션 버튼 */}
           <div className="pm-actions">
@@ -127,7 +132,17 @@ export default function ProjectModal({ project, onClose, onPdf, onYoutube }) {
                 <GitHubIcon /> GitHub
               </a>
             )}
-            {project.wip && !project.pdf && !project.github && (
+            {project.blog && (
+              <a
+                href={project.blog}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                <BlogIcon /> 네이버 블로그
+              </a>
+            )}
+            {project.wip && !project.pdf && !project.github && !project.blog && (
               <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
                 공개 예정
               </span>
