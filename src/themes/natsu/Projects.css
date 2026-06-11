@@ -1,0 +1,167 @@
+.projects { 
+  border-top: none; 
+}
+
+/* 3열 그리드 */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  background: transparent;
+  border: none;
+  overflow: visible;
+}
+
+/* 카드 — button reset */
+.project-card {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 4px solid var(--border-strong);
+  border-radius: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--trans);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+}
+.project-card:hover { 
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 var(--border-strong);
+}
+.project-card.wip {
+  border-top: 4px solid var(--accent-dim);
+}
+.project-card:focus-visible {
+  outline: 4px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* 썸네일 */
+.card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-primary);
+  border-bottom: 4px solid var(--border-strong);
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s steps(4), filter 0.2s steps(4);
+  image-rendering: pixelated;
+}
+.card-thumb.top-align img {
+  object-position: top;
+}
+.project-card:hover .card-thumb img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+.card-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--trans);
+  background: rgba(0, 0, 0, 0.4);
+}
+.project-card:hover .card-thumb-overlay { opacity: 1; }
+.card-open-hint {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  border: 2px solid var(--border-strong);
+  padding: 0.5rem 1.2rem;
+  background: #fff;
+  box-shadow: 4px 4px 0 var(--border-strong);
+  text-transform: uppercase;
+}
+
+/* 카드 텍스트 영역 */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.6rem;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.tag {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  background: #fff;
+  color: var(--text-primary);
+  border: 2px solid var(--border-strong);
+}
+
+.project-title {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.project-desc {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+  flex: 1;
+}
+
+/* 카드 하단 아이콘 링크 */
+.card-links {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  align-items: center;
+  border-top: 2px dashed var(--border-strong);
+}
+.card-link {
+  color: var(--text-primary);
+  transition: all var(--trans);
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  border: 2px solid transparent;
+}
+.card-link:hover { 
+  background: var(--text-primary);
+  color: #fff;
+  border: 2px solid var(--border-strong);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--border-strong);
+}
+
+.wip-badge {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: #fff;
+  background: var(--accent-green);
+  padding: 0.2rem 0.6rem;
+  margin-right: auto;
+  border: 2px solid var(--border-strong);
+}
+
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+@media (max-width: 560px) {
+  .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .card-body { padding: 1.2rem; }
+}

@@ -1,0 +1,207 @@
+.footer {
+  border-top: 4px dashed var(--border-strong);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.footer-inner {
+  padding-top: 5rem;
+  padding-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 500px;
+}
+
+.footer-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.footer-sub {
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--border-strong);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0;
+  transition: all var(--trans);
+  box-shadow: 4px 4px 0 var(--border-strong);
+}
+.footer-link:hover { 
+  background: var(--accent); 
+  border-color: var(--accent);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 183, 3, 0.2);
+}
+
+/* Amelia Watson Easter Egg */
+.ame-easter-egg {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+}
+.ame-easter-egg:hover {
+  transform: scale(1.35) rotate(-15deg);
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+}
+
+/* Bonfire Easter Egg */
+.bonfire-easter-egg {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+.bonfire-easter-egg:hover {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 8px rgba(255, 152, 0, 0.7));
+}
+
+/* Alan Wake Easter Egg */
+.aw-easter-egg {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+.aw-easter-egg:hover {
+  transform: scale(1.3) rotate(10deg);
+  filter: drop-shadow(0 0 8px rgba(224, 247, 250, 0.8));
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@keyframes ember-burn {
+  0% { box-shadow: inset 0 0 0px 0px rgba(255, 69, 0, 0); }
+  20% { box-shadow: inset 0 0 100px 30px rgba(255, 69, 0, 0.4), inset 0 0 200px 80px rgba(255, 140, 0, 0.2); }
+  40% { box-shadow: inset 0 0 80px 20px rgba(255, 69, 0, 0.3), inset 0 0 150px 60px rgba(255, 140, 0, 0.1); }
+  60% { box-shadow: inset 0 0 120px 40px rgba(255, 69, 0, 0.5), inset 0 0 250px 100px rgba(255, 140, 0, 0.3); }
+  80% { box-shadow: inset 0 0 60px 15px rgba(255, 69, 0, 0.2), inset 0 0 100px 40px rgba(255, 140, 0, 0.1); }
+  100% { box-shadow: inset 0 0 0px 0px rgba(255, 69, 0, 0); }
+}
+
+/* --- Time Travel Easter Egg (Amelia Watson) --- */
+.time-travel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  pointer-events: none;
+  backdrop-filter: sepia(0.8) hue-rotate(-50deg) contrast(1.5) invert(0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+body.time-travel-glitch {
+  animation: time-glitch-shake 0.1s infinite;
+}
+
+@keyframes time-glitch-shake {
+  0% { transform: translate(2px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(0px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(2px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(2px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* Giant spinning pocket watch */
+.time-travel-clock {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 10px solid rgba(212, 175, 55, 0.5); /* Gold rim */
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.4), inset 0 0 30px rgba(212, 175, 55, 0.3);
+  margin-bottom: 2rem;
+  opacity: 0.7;
+}
+
+.clock-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+
+/* Hands spin backwards rapidly */
+.minute-hand {
+  width: 6px;
+  height: 120px;
+  margin-left: -3px;
+  animation: spin-backward 0.5s linear infinite;
+}
+
+.hour-hand {
+  width: 10px;
+  height: 80px;
+  margin-left: -5px;
+  animation: spin-backward 3s linear infinite;
+}
+
+@keyframes spin-backward {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.time-travel-text {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 0 0 20px rgba(255, 235, 59, 0.8), 2px 2px 5px rgba(0,0,0,0.8);
+  letter-spacing: 0.1em;
+  animation: glitch-text 0.1s infinite;
+}
+
+@keyframes glitch-text {
+  0% { transform: translate(0) skew(0deg); opacity: 1; }
+  20% { transform: translate(-5px, 2px) skew(10deg); opacity: 0.8; }
+  40% { transform: translate(5px, -2px) skew(-10deg); opacity: 0.9; }
+  60% { transform: translate(-2px, 5px) skew(5deg); opacity: 1; }
+  80% { transform: translate(2px, -5px) skew(-5deg); opacity: 0.8; }
+  100% { transform: translate(0) skew(0deg); opacity: 1; }
+}

@@ -1,0 +1,131 @@
+@property --radius {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 150px;
+}
+
+@property --fade {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 300px;
+}
+
+@property --bg-alpha {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.98;
+}
+
+.aw-minigame-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  cursor: crosshair;
+  overflow: hidden;
+  user-select: none;
+}
+
+.aw-darkness-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  --radius: 200px;
+  --fade: 400px;
+  --bg-alpha: 0.98;
+  
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y), 
+    transparent var(--radius), 
+    rgba(0, 0, 0, var(--bg-alpha)) var(--fade)
+  );
+  transition: --radius 0.3s ease-out, --fade 0.3s ease-out, --bg-alpha 0.3s ease-out;
+  pointer-events: none;
+}
+
+.aw-minigame-container.focusing .aw-darkness-overlay {
+  --radius: 80px;
+  --fade: 150px;
+  --bg-alpha: 1;
+}
+
+.aw-shadow-entity {
+  position: absolute;
+  width: 60px;
+  height: 90px;
+  background-color: #050505;
+  border-radius: 40% 40% 60% 60%;
+  filter: blur(2px) drop-shadow(0 0 15px rgba(0,0,0,0.9));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: float 3s ease-in-out infinite alternate, twitch 2s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
+  z-index: 10001; /* Above darkness overlay */
+}
+
+.aw-shadow-eyes {
+  display: flex;
+  gap: 12px;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+  margin-top: -30px;
+}
+
+.aw-minigame-container.focusing .aw-shadow-eyes {
+  opacity: 1;
+  transform: scale(1.3);
+  filter: brightness(1.5);
+}
+
+.aw-shadow-eye {
+  width: 8px;
+  height: 8px;
+  background-color: #ff1111;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.8);
+}
+
+.aw-shadow-entity.burning {
+  filter: blur(5px) brightness(1.5) drop-shadow(0 0 20px #ff3300);
+  animation: float 3s ease-in-out infinite alternate, burn-shake 0.1s infinite;
+}
+
+.aw-shadow-entity.destroyed {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.1);
+  filter: blur(20px);
+}
+
+@keyframes float {
+  0% { margin-top: 0px; margin-left: -10px; }
+  100% { margin-top: -20px; margin-left: 10px; }
+}
+
+@keyframes twitch {
+  0%, 90% { transform: translate(-50%, -50%) skew(0deg); }
+  92% { transform: translate(-50%, -50%) skew(5deg); }
+  95% { transform: translate(-50%, -50%) skew(-5deg); }
+  100% { transform: translate(-50%, -50%) skew(0deg); }
+}
+
+@keyframes burn-shake {
+  0% { transform: translate(calc(-50% - 3px), calc(-50% - 3px)); }
+  50% { transform: translate(calc(-50% + 3px), calc(-50% + 3px)); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+.aw-flashbang {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: white;
+  pointer-events: none;
+  z-index: 10002;
+}

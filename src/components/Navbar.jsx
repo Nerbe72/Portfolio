@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ThemeSwitcher from './ThemeSwitcher'
 import './Navbar.css'
 
 const navLinks = [
@@ -39,22 +40,28 @@ export default function Navbar() {
         </a>
 
         {/* 데스크톱 메뉴 */}
-        <nav className="navbar-links">
+        <nav className="navbar-links" style={{ alignItems: 'center' }}>
           {navLinks.map(link => (
             <a key={link.href} href={link.href} className="navbar-link">
               {link.label}
             </a>
           ))}
+          <ThemeSwitcher />
         </nav>
 
-        {/* 햄버거 버튼 (모바일) */}
-        <button
-          className={`hamburger${menuOpen ? ' open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="메뉴 열기"
-        >
-          <span /><span /><span />
-        </button>
+        {/* 모바일 액션 (데스크톱에선 숨김) */}
+        <div className="mobile-nav-actions">
+          <div className="mobile-only-switcher" style={{ display: 'none' }}>
+            <ThemeSwitcher />
+          </div>
+          <button
+            className={`hamburger${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="메뉴 열기"
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </div>
 
       {/* 모바일 드로어 */}
@@ -77,6 +84,9 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <div style={{ padding: '1rem 2rem', borderTop: '1px solid var(--border-strong)' }}>
+              <ThemeSwitcher />
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>

@@ -1,0 +1,180 @@
+.projects { 
+  border-top: 2px dashed var(--border-strong); 
+}
+
+/* 3열 그리드 */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  overflow: visible;
+  padding: 1rem 1.5rem 1.5rem 1rem; /* 그림자 크기에 맞춰 마젠타 배경 확장 */
+}
+
+/* 카드 — button reset */
+.project-card {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  cursor: pointer;
+  text-align: left;
+  border: 2px solid var(--accent);
+  box-shadow: 8px 8px 0 var(--accent-cyan);
+  transition: all var(--trans);
+  position: relative;
+}
+.project-card:hover { 
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 var(--accent-yellow);
+  border-color: var(--accent-yellow);
+  background: #050505;
+}
+.project-card.wip {
+  border-color: var(--accent-dim);
+  box-shadow: 8px 8px 0 var(--border);
+}
+.project-card:focus-visible {
+  outline: 2px dashed var(--accent-yellow);
+  outline-offset: 4px;
+}
+
+/* 썸네일 */
+.card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--accent);
+  transition: border-color var(--trans);
+}
+.project-card:hover .card-thumb {
+  border-bottom-color: var(--accent-yellow);
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s steps(4), filter 0.2s steps(4);
+  filter: brightness(0.8) contrast(1.2);
+}
+.card-thumb.top-align img {
+  object-position: top;
+}
+.project-card:hover .card-thumb img {
+  transform: scale(1.1) rotate(2deg);
+  filter: brightness(1.2) contrast(1.5) saturate(1.5);
+}
+.card-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: rgba(255, 0, 127, 0.4);
+  transition: opacity var(--trans);
+}
+.project-card:hover .card-thumb-overlay { opacity: 1; }
+.card-open-hint {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: #000;
+  border: 2px solid #000;
+  padding: 0.4rem 0.9rem;
+  background: var(--accent-yellow);
+  text-transform: uppercase;
+  font-weight: bold;
+  transform: skewX(-10deg);
+  box-shadow: 3px 3px 0 #000;
+}
+
+/* 카드 텍스트 영역 */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.4rem 1.6rem;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.tag {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--accent-cyan);
+  color: #000;
+  border: 1px solid #000;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  text-transform: uppercase;
+  transform: skewX(-5deg);
+}
+
+.project-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.project-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+  flex: 1;
+}
+
+/* 카드 하단 아이콘 링크 */
+.card-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  align-items: center;
+  border-top: 1px dashed var(--border-strong);
+}
+.card-link {
+  color: var(--accent-cyan);
+  transition: all var(--trans);
+  display: flex;
+  align-items: center;
+  background: #000;
+  padding: 0.3rem;
+  border: 1px solid var(--accent-cyan);
+}
+.card-link:hover { 
+  background: var(--accent-cyan);
+  color: #000;
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--accent-yellow);
+}
+
+.wip-badge {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: #000;
+  background: var(--accent-dim);
+  border: 1px solid #000;
+  padding: 0.2rem 0.5rem;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+@media (max-width: 560px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .card-body { padding: 1.2rem; }
+}

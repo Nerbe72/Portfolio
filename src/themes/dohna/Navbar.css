@@ -1,0 +1,104 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: all var(--trans);
+  border-bottom: 2px solid transparent;
+}
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(5px);
+  border-bottom: 3px solid var(--accent-cyan);
+  box-shadow: 0 4px 0 var(--accent);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 var(--accent-cyan);
+}
+.navbar-logo:hover { 
+  color: var(--accent-yellow); 
+  text-shadow: 2px 2px 0 var(--accent);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.navbar-link {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: all var(--trans);
+  padding: 0.3rem 0.6rem;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+}
+.navbar-link:hover { 
+  background: var(--accent-cyan);
+  color: #000;
+  border-color: #000;
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--accent);
+}
+
+/* 햄버거 버튼 */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--accent-cyan);
+  transition: transform var(--trans), opacity var(--trans);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); background: var(--accent-yellow); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: var(--accent-yellow); }
+
+/* 모바일 메뉴 */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #000;
+  border-bottom: 3px solid var(--accent-cyan);
+}
+.mobile-link {
+  padding: 1.2rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  border-top: 1px dashed var(--accent-dim);
+  transition: all var(--trans);
+  text-transform: uppercase;
+}
+.mobile-link:hover { 
+  color: #000; 
+  background: var(--accent-cyan); 
+  padding-left: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .navbar-links { display: none; }
+  .hamburger { display: flex; }
+}

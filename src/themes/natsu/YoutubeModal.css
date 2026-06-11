@@ -1,0 +1,30 @@
+/* PdfModal.css와 공유하는 backdrop 스타일은 PdfModal.css에 있음 */
+/* YoutubeModal 전용 스타일 */
+
+.yt-modal-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.yt-body {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 비율 */
+  height: 0;
+}
+
+.yt-frame {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #000;
+}

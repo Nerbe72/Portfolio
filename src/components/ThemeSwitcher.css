@@ -1,0 +1,71 @@
+.theme-switcher-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(100, 100, 100, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong, #ccc);
+}
+
+.theme-select {
+  background: transparent;
+  color: var(--text-primary, #fff);
+  border: none;
+  font-size: 0.75rem;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.theme-select option {
+  background: #111;
+  color: #fff;
+}
+
+.theme-btn {
+  background: var(--text-primary, #fff);
+  color: var(--bg-primary, #000);
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.theme-btn:hover {
+  opacity: 0.8;
+}
+
+.theme-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Expanding Circle Transition */
+.theme-transition-circle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999; /* Must be extremely high to cover everything including navbar */
+  transform: scale(0);
+  opacity: 1;
+}
+
+.theme-transition-circle.expanding {
+  transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+  transform: scale(1);
+}
+
+.theme-transition-circle.fading {
+  transform: scale(1);
+  transition: opacity 0.8s ease-out;
+  opacity: 0;
+}
